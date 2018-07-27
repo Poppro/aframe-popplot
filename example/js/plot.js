@@ -926,9 +926,6 @@ function lerpCamera(self) { //moves camera & acts as main lerp loop for other le
     //handle lerp exit condition...
     if(self.lerpCount > 60) {
       self.lerping = false;
-      if(self.data.activeCamera === 'main') {
-        document.getElementById("#rig").setAttribute('look-controls', 'enabled: true');
-      }
       toggleGridInternal(self);
     }
     self.lerpCount++;

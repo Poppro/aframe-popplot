@@ -176,7 +176,7 @@ For this attribute to perform as expected, your scene must include a camera rig 
 
 activeCamera will allow you to 'collapse' the scatterplot into variations of 2D and 3D views. All labels and graphical indicators are dynamically updated to match the new plot.
 
-#### Basic used
+#### Basic use
 
 This attribute has four values it can be assigned: main, camXY, camXZ, and camYZ. Their properties are defined below.
 

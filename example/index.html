@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>iCorr Data Visualizer</title>
+    <meta name="iCorr" content="iCorr Data Visualization">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script src="js/plot.js"></script>
+    <script src="js/plotHandler.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href='stylesheets/stylesheet.css'>
+    <style> body {
+    margin: 0px;
+    } </style>
+  </head>
+  <body>
+    <a-scene>
+      <a-sky color="#000000"></a-sky>
+      <a-entity id="#rig" position="5 5 15" look-controls wasd-controls="fly:true">
+        <a-entity camera="active:true" rotation="0 0 0" aframe-injected data-aframe-inspector-original-camera></a-entity>
+      </a-entity>
+
+      <button onclick="toggleHelper()" id="toggle" aframe-injected> Open </button> <br><br>
+      <div id="inspector" aframe-injected>
+        <br><br>
+         Axis Lines: <input type="checkbox" id="axis check" checked="true" onclick="toggleAxis()"> <br><br>
+         Labels: <input type="checkbox" id="label check" onclick="toggleLabels()"><br><br>
+         Denominators: <input type="checkbox" id="denom check" onclick="toggleDenom()"><br><br>
+         Denominator Labels: <input type="checkbox" id="denomL check" onclick="toggleDenomLabels()"><br><br>
+         Grid: <input type="checkbox" id="grid check" onclick="toggleGrid()"> <br> <br>
+         X-Gradient: <input type="color" id="XG1" value="#000000" onchange="updateColorScheme()"> <input type="color" id="XG2" value="#FF0000" onchange="updateColorScheme()"> <br>
+         Y-Gradient: <input type="color" id="YG1" value="#000000" onchange="updateColorScheme()"> <input type="color" id="YG2" value="#00FF00" onchange="updateColorScheme()"> <br>
+         Z-Gradient: <input type="color" id="ZG1" value="#000000" onchange="updateColorScheme()"> <input type="color" id="ZG2" value="#0000FF" onchange="updateColorScheme()"> <br> <br>
+         <b><u>Camera Selection</u></b><br><br>
+         <select name="views" onchange="selectCamera()">
+           <option value="main">Freeroam</option>
+           <option value="camXZ">XZ View</option>
+           <option value="camXY">XY View</option>
+           <option value="camYZ">YZ View</option>
+         </select>
+      </div>
+    </a-scene>
+    <script> start(); </script>
+  </body>
+</html>

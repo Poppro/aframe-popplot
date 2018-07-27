@@ -60,7 +60,7 @@ If your JSON is not structured this way, don't worry! Using the component's json
       "Whoa this works": 0,
       "NoNeedToChange": 51,
       "But/Defaults_Are-Nice": 323.2
-    },
+    }
 ]
 ```
 

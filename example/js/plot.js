@@ -168,7 +168,6 @@ function drawLabels(self) {
   let labely = document.createElement('a-text');
   let labelz = document.createElement('a-text');
   let gSize = (parseFloat(self.data.scale[0])+parseFloat(self.data.scale[1])+parseFloat(self.data.scale[2]))/3
-  console.log(gSize)
   //build text appropriately
   labelx.setAttribute('value',self.data.labels[0]);
   labelx.setAttribute('rotation', '-90 180 0');
@@ -761,11 +760,11 @@ function updateGradientInternal(self) { //updates the color scheme of the plot.
   let geometry = self.cc.geometry;
   let scale = self.data.scale;
 
-  for(let i = 0; i < geometry.attributes.color.count; i++) {
+  for(let i = 0, j = 0; i < geometry.attributes.color.count; i++, j+=3) {
     //find scale of particle relitive to plot for linear gradient managment...
-    let xs = geometry.vertices[i].x/scale[0];
-    let ys = geometry.vertices[i].y/scale[1];
-    let zs = geometry.vertices[i].z/scale[2];
+    let xs = self.vertices[i].x/scale[0];
+    let ys = self.vertices[i].y/scale[1];
+    let zs = self.vertices[i].z/scale[2];
 
     let totalR = Math.ceil((xG2[0]-xG1[0])*xs) + xG1[0] + //calculate gradient colors Red
       Math.ceil((yG2[0]-yG1[0])*ys) + yG1[0] +
@@ -786,13 +785,15 @@ function updateGradientInternal(self) { //updates the color scheme of the plot.
       totalR = 255;
     }
 
-    var color = new THREE.Color("rgb(" + totalR + ", "
+    let color = new THREE.Color("rgb(" + totalR + ", "
     + totalG + ", "
     + totalB + ")");
 
-    geometry.colors[i] = color;
+    geometry.attributes.color.array[j] = color.r;
+    geometry.attributes.color.array[j+1] = color.g;
+    geometry.attributes.color.array[j+2] = color.b;
   }
-  geometry.colorsNeedUpdate = true;
+  geometry.attributes.color.needsUpdate = true;
 }
 
 function handleLerp(self, oldCam) { //handles main lerp system and calls other lerp functions
@@ -1266,7 +1267,6 @@ function lerpUX(self) { //interpolates the text and grid itself  (this function 
   a.x = lerpS[0];
   a.y = lerpS[1];
   a.z = lerpS[2];
-      console.log(self.el.getObject3D('denominators').scale.x)
 }
 
 //Helper Functions
